@@ -1,0 +1,5 @@
+name = "Atul Lanka"
+SID = "24500574"
+email = "atul.lanka@berkeley.edu"
+github_name = "atullanka"
+status = "enrolled"
