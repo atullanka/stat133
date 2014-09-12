@@ -5,5 +5,19 @@
     "email": "atul.lanka@berkeley.edu", 
     "github_name": "atullanka", 
     "status": "enrolled", 
-    "grades": {}
+    "grades": {
+        "hw1": {
+            "note": "", 
+            "hash": "354ba389e690f75cf6ab667484690f1546384c20", 
+            "earned": 14, 
+            "possible": 14, 
+            "penalty": 0, 
+            "parts": {
+                "ex1": {
+                    "possible": 14, 
+                    "earned": 14
+                }
+            }
+        }
+    }
 }
