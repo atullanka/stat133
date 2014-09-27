@@ -267,7 +267,7 @@ text(log(SO2012Ctry[top5,7]), log(SO2012Ctry[top5, 14]),
 # where the countries are filled with a light grey color.
 
 ## you only need to run these two lines once:
-install.packages("maps")
+
 library("maps")
 
 # world <- map( your code here )
@@ -304,7 +304,7 @@ symbols(SO2012Ctry$longitude, SO2012Ctry$latitude, circles = sqrt(SO2012Ctry$Tot
 # e.g. myColor = "#FEB24CAA" or   "#FEB24C88"
 
 # You only need to call these two lines once:
-install.packages("RColorBrewer")
+
 library("RColorBrewer")
 
 # display.brewer.all( your code here )
@@ -375,7 +375,7 @@ athTab <- table(athletes$Sport, athletes$Sex)
 barplot(athTab, beside = TRUE)
 barplot(athTab, beside = FALSE)
 # what should beside be set to, T/F?
-set.beside <- your answer
+set.beside <- T
 
 ### Barplot with beside = TRUE provides the easiest comparison. 
 
