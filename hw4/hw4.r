@@ -16,11 +16,12 @@ load('hw4-tests.rda')
 # upper and lower quantiles
 
 truncate <- function(input.vector, trim) {
-
+  trim <- c(0:50)/100
         stopifnot(0<=trim & trim<=0.5) # this line makes sure trim in [0,0.5]
 
-            # your code here
-
+            truncated.vector <- apply(input.vector, function(col)
+              col [!(quantile(col, trim) <= col & col <= quantile(col, 1-trim))])
+return(truncated.vector)
     }
 
 tryCatch(checkEquals(c(2, 3, 4), truncate(1:5, trim=0.25)), error=function(err)
@@ -46,7 +47,11 @@ tryCatch(checkIdentical(integer(0), truncate(1:6, trim=0.5)),
 # second the upper bound
 
 outlierCutoff <- function(data) {
-        # your code here
+  outlier.cutoffs <- apply(data, 2, function(m) { 
+    min.outlier.cutoffs <-median (m) - 1.5*IQR(m)
+    max.outlier.cutoffs <-median (m) + 1.5*IQR(m)
+    return(c(min.outlier.cutoffs, max.outlier.cutoffs))})
+  return (outlier.cutoffs)
 
 }
 
@@ -75,13 +80,11 @@ tryCatch(checkIdentical(outlier.cutoff.t, outlierCutoff(ex1.test)),
 
 removeOutliers <- function(data, max.outlier.rate) {
 
-        stopifnot(max.outlier.rate>=0 & max.outlier.rate<=1)
+  
 
-            # your code here
-    }
 
 tryCatch(checkEquals(remove.outlier.t, removeOutliers(ex1.test, 0.25), ),
-                  error=function(err) errMsg(err))
+         error=function(err) errMsg(err))
 
 
 # Suppose you are given a data frame where all but one of the variables are
@@ -103,10 +106,11 @@ tryCatch(checkEquals(remove.outlier.t, removeOutliers(ex1.test, 0.25), ),
 
 meanByLevel <- function(data) {
 
-        # your code here
+  mean.value <- sapply(levels(data), function(s)
+    mean(data==s))
 }
 
-tryCatch(checkIdentical(mean.by.level.t, meanByLevel(iris), checkNames=F),
+tryCatch(checkEquals(mean.by.level.t, meanByLevel(iris), checkNames=F),
          error=function(err) errMsg(err))
 
 
