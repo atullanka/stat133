@@ -54,7 +54,9 @@ subset.threebronze.pop <- subset.threebronze$pop
 # whose values in <GDPPP> are strictly less that <GDPPP.cutoff>.
 
 medpopByGDPPP <- function(GDPPP.cutoff, GDPPP, pop){
- 
+ for (GDPPP.cutoff in min(SO2012Ctry$GDPPP):max(SO2012Ctry$GDPPP)) {
+   
+ }
 }
 
 
