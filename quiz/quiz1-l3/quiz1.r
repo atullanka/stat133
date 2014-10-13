@@ -2,14 +2,14 @@
 # required to perform the following tasks. The dataset includes data for countries in 2012.
 
 # your code here
-
+load("SummerOlympics2012Ctry.rda")
 # calculate the mean and the maximum of GDP in the dataset. Store these as the
 # variables <mean.GDP> and <max.GDP> respectively.
 
 # mean.GDP <- your code here
 # max.GDP <- your code here
-
-
+mean.GDP <- mean(SO2012Ctry$GDP)
+max.GDP <- max(SO2012Ctry$GDP)
 
 # For each country in the dataset, calculate the number of female athletes (Female) divided
 # by the total number of athletes (Female + Male). Store this as the variable
@@ -17,7 +17,7 @@
 # the number of observations in the dataset.
 
 # female.prop <- your code here
-
+female.prop <- c(SO2012Ctry$Female / (SO2012Ctry$Female + SO2012Ctry$Male))
 
 
 
@@ -28,17 +28,16 @@
 
 # subset.nobronze <- your code here
 # subset.threebronze <- your code here
-
-
-
+subset.nobronze <- SO2012Ctry[SO2012Ctry$Bronze == 0, ]
+subset.threebronze <- SO2012Ctry[SO2012Ctry$Bronze >= 3, ]
 
 # For each of your subsets, create a vector giving the population size. Store
 # these as variables <subset.nobronze.pop> and <subset.threebronze.pop>.
 
 # subset.nobronze.pop <- your code here
 # subset.threebronze.pop <- your code here
-
-
+subset.nobronze.pop <- subset.nobronze$pop
+subset.threebronze.pop <- subset.threebronze$pop
 
 
 
@@ -55,7 +54,7 @@
 # whose values in <GDPPP> are strictly less that <GDPPP.cutoff>.
 
 medpopByGDPPP <- function(GDPPP.cutoff, GDPPP, pop){
-  # your code here  
+ 
 }
 
 
@@ -67,5 +66,8 @@ medpopByGDPPP <- function(GDPPP.cutoff, GDPPP, pop){
 # 3) plotting character set to 10
 # 4) a red horizontal line at female proportion of 0.50.
 
-
-
+plot(SO2012Ctry$Female + SO2012Ctry$Male, female.prop, 
+     main = "Proportion of female athletes vs Total # athletes", 
+     xlab = "Total # athletes", ylab = "Proportion of female athletes", 
+     pch = 10)
+abline(h = 0.5, col = "red")
