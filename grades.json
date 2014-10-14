@@ -38,18 +38,18 @@
         }, 
         "hw3": {
             "note": "", 
-            "hash": "f7963661562227c840f457aaa884cfd268d00a06", 
-            "earned": 30, 
+            "hash": "080c402189d496009900b53f67e40ccea82f168e", 
+            "earned": 32, 
             "possible": 32, 
             "penalty": 0, 
             "parts": {
                 "hw3": {
-                    "possible": 16, 
-                    "earned": 15
+                    "possible": 0, 
+                    "earned": 0
                 }, 
                 "hw3_fig": {
-                    "possible": 16, 
-                    "earned": 15
+                    "possible": 32, 
+                    "earned": 32
                 }
             }
         }, 
