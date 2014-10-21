@@ -37,7 +37,7 @@ m <- matrix(seq(10,120,10), nrow = 3, ncol = 4, byrow = TRUE)
 ## Then add the column names :  num, lett, even
 a <- 1:10
 b <- letters[1:10]
-c <- a == c(seq(2,10,2))
+c <- a == 2 |a == 4 |a == 6 |a == 8 |a == 10
 n <- data.frame(a,b,c)
 colnames(n) <- c("num", "lett", "even")
 ## Create a variable [[ p ]] that is a list and whose elements are x, y, z and m from above.
