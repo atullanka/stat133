@@ -93,7 +93,8 @@ reutrn(wait)
 #   total: total times spent in Johnny's OH (serv + wait)
 
 queueing_sim <- function(k) {
-  # your code here
+ sim <- data.frame(interarrival_times(k), service_times(k), wait(interarrival_times, service_times), service_times+waiting_times)
+ return(sim)
 }
 
 set.seed(1234)
