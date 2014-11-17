@@ -9,7 +9,8 @@
 # Output: <num>: a Poisson(k) random variable (a single number)
 
 num_students <- function(k) {
-  # your code here
+ num <- rpois(1, k)
+ return(num)
 }
 
 # Assume all students arrive at different times.
@@ -27,7 +28,8 @@ num_students <- function(k) {
 # random variables (a vector of length num)
 
 interarrival_times <- function(num) {
-  # your code here
+  inter <- rexp(num,1/6 )
+  return(inter)
 }
 
 # For student i, it takes Z_i minutes for Johnny to answer questions.
@@ -42,7 +44,8 @@ interarrival_times <- function(num) {
 # random variables (a vector of length num)
 
 service_times <- function(num) {
-  # your code here
+  serv <- rexp(num,1/8 )
+  return(serv)
 }
 
 # Compute the waiting time for each student.
@@ -66,7 +69,16 @@ service_times <- function(num) {
 # <wait>: a vector that contains the waiting time for each student
 
 waiting_times <- function(inter, serv){
-  # your code here
+  num <- rpois(1, 10)
+  serv <- rexp(num,1/8 )
+  inter <- rexp(num,1/6 )
+  wait <- vector("list", length = length(num))
+  for(i in 2:num_students(10)){
+    wait[i] <- lapply(wait,service_times[i] + wait[i-1] - interarrival_times[i])
+  if(i-1==1) {wait[[i-1]] = 0}
+  if(wait[i] < 0) {wait[i]= 0}
+  }
+reutrn(wait)  
 }
 
 # Simulation
@@ -128,7 +140,13 @@ set.seed(1234)
 # <br_times>: a numeric vector of break times
 
 break_times <- function(n){
-  # your code here
+  br_times <- rnorm(n, 4, 2)
+  for(i in 1:n){
+  if(br_times[[i]] < 0) {
+    br_times[[i]] = 0
+  }
+  }
+  return(br_times)
 }
 
 # Write a function called serv_wait_sick that computes
