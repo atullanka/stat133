@@ -284,7 +284,7 @@ presParty <- speechesDF$party
 names(presParty) <- speechesDF$Pres   
 # use rainbow() to pick one unique color for each party (there are 6 parties)
 
-cols <- <your code here>
+cols <- rainbow(6)
 
 # Now we are ready to plot again.
 # First plot mds by calling plot() with type='n' (it will create the axes but not plot the points)
