@@ -295,11 +295,14 @@ cols <- rainbow(6)
 plot(mds, type = 'n', main = "Presidents", xlab = "", ylab = "")
 text(mds[,1],mds[,2],labels = unique(speechesDF$Pres), cex = 0.6,
 col = cols[presParty])
-
+legend(legend = levels(presParty), fill = cols,cex = 0.6, "topright")
 ### Use hierarchical clustering to produce a visualization of  the results.
 # Compare the two plots.
 hc = hclust(as.dist(presDist))
 plot(hc)
+
+# Both plots look similar in terms of the shape of the plot, but not in 
+# representation
 
 ## Final part 
 # Use the data in the dataframe speechesDF to create the plots:
