@@ -280,8 +280,8 @@ plot(mds)
 # is the party affiliation and the names attribute has the names of the presidents.
 # Hint: the info is in speechesDF$party and speechesDF$Pres
 
-presParty <- <your code here>
-  
+presParty <- speechesDF$party
+names(presParty) <- speechesDF$Pres   
 # use rainbow() to pick one unique color for each party (there are 6 parties)
 
 cols <- <your code here>
