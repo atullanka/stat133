@@ -251,6 +251,7 @@ presidentWordMat <- do.call(cbind, collected.list)
 # [docFreq]: vector of the same length as [uniqueWords], 
 # count the number of presidents that used the word
 
+p = vector()
 for (i in 1:nrow(presidentWordMat)){
   p[[i]] = sum(presidentWordMat[i,] != 0)
 }
@@ -279,9 +280,8 @@ plot(mds)
 # Create a variable presParty, a vector of length 41 where each element
 # is the party affiliation and the names attribute has the names of the presidents.
 # Hint: the info is in speechesDF$party and speechesDF$Pres
-
-presParty <- speechesDF$party
-names(presParty) <- speechesDF$Pres   
+presParty <- speechesDF[indices.president,]$party
+names(presParty) <- unique(speechesDF$Pres)   
 # use rainbow() to pick one unique color for each party (there are 6 parties)
 
 cols <- rainbow(6)
@@ -292,8 +292,9 @@ cols <- rainbow(6)
 # then call text() with the presidents' names as labels and the color argument
 # col = cols[presParty[rownames(presDist)]]
   
-plot(<your code here>)
-text(<your code here>)
+plot(mds, type = 'n', main = "Presidents", xlab = "", ylab = "")
+text(mds[,1],mds[,2],labels = unique(speechesDF$Pres), cex = 0.6,
+col = cols[presParty])
 
 ### Use hierarchical clustering to produce a visualization of  the results.
 # Compare the two plots.
@@ -309,8 +310,22 @@ plot(hc)
 # x-axis: speech year, y-axis: average sentence length (word/sent)
 
 # your plot statements below:
+plot(speechesDF$speechYr, sentences, main = "Number of sentences vs Speech Year", 
+     xlab = "Speech Year", ylab = "# of sentences")
 
+plot(speechesDF$speechYr, words, main = "Number of words vs Speech Year", 
+     xlab = "Speech Year", ylab = "# of words")
 
+plot(speechesDF$speechYr, chars, main = "Number of characters vs Speech Year", 
+     xlab = "Speech Year", ylab = "# of characters")
+
+plot(speechesDF$speechYr, (chars/words), 
+     main = "Average word length vs Speech Year", 
+     xlab = "Speech Year", ylab = "Average word length")
+
+plot(speechesDF$speechYr, (words/sentences),
+     main = "Average sentence length vs Speech Year", 
+     xlab = "Speech Year", ylab = "Average sentence length")
 
 
 
