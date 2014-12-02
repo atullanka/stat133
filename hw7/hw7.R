@@ -293,7 +293,7 @@ cols <- rainbow(6)
 # col = cols[presParty[rownames(presDist)]]
   
 plot(mds, type = 'n', main = "Presidents", xlab = "", ylab = "")
-text(mds[,1],mds[,2],labels = unique(speechesDF$Pres), cex = 0.6,
+text(mds[,1],mds[,2],labels = unique(speechesDF$initial), cex = 0.6,
 col = cols[presParty])
 legend(legend = levels(presParty), fill = cols,cex = 0.6, "topright")
 ### Use hierarchical clustering to produce a visualization of  the results.
