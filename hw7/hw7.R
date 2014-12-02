@@ -183,14 +183,14 @@ uniqueWords <- sort(unique(unlist(speechWords)), decreasing=F)
 # You may want to use an apply statment to first create a list of word vectors, one for each speech.
 
 # your code to create [wordMat] here:
-wordMat = matrix(0, nrow=length(uniqueWords), ncol=n.speeches)
-rownames(wordMat) = uniqueWords
-for(a in 1:n.speeches){
-  table.a = table(speechWords[[a]])
-  for(b in 1:length(table.a)) {
-    wordMat[names(table.a)[[b]], a] = table.a[b]
-  }
-}
+#wordMat = matrix(0, nrow=length(uniqueWords), ncol=n.speeches)
+#rownames(wordMat) = uniqueWords
+#for(a in 1:n.speeches){
+#  table.a = table(speechWords[[a]])
+#  for(b in 1:length(table.a)) {
+#    wordMat[names(table.a)[[b]], a] = table.a[b]
+#  }
+#}
 
 # Load the dataframe [speechesDF] which has two variables,
 # president and party affiliation (make sure to keep this line in your code):
@@ -218,25 +218,25 @@ speechesDF <- data.frame(speechesDF, speechYr,speechMo)
 # and that colum is the sum of all the columns corresponding to speeches make by said president.
 
 # note that your code will be a few lines...
-unique.presidents <- unique(presidents)
-change.list <- list()
-change.list[[1]] <- TRUE
-for (i in 2:length(presidents))
-  change.list[[i]] <- presidents [i] != presidents[i-1]
+#unique.presidents <- unique(presidents)
+#change.list <- list()
+#change.list[[1]] <- TRUE
+#for (i in 2:length(presidents))
+#  change.list[[i]] <- presidents [i] != presidents[i-1]
 
-indices.president <- which(unlist(change.list)==T)
+#indices.president <- which(unlist(change.list)==T)
 
-president.matrix.list <- list()
-for(i in 1:(length(indices.president)-1))
-  president.matrix.list[[i]]<- wordMat[,c((indices.president[i]):(indices.president[i+1]-1))]
-president.matrix.list[[length(indices.president)]] <- wordMat[,c(indices.president[length(indices.president)]:n.speeches)]
+#president.matrix.list <- list()
+#for(i in 1:(length(indices.president)-1))
+#  president.matrix.list[[i]]<- wordMat[,c((indices.president[i]):(indices.president[i+1]-1))]
+#president.matrix.list[[length(indices.president)]] <- wordMat[,c(indices.president[length(indices.president)]:n.speeches)]
 
-collected.list <- list()
-for(i in 1:10) collected.list[[i]] <- rowSums(president.matrix.list[[i]])
-collected.list[[11]] <- president.matrix.list[[11]]
-for (i in 12:length(indices.president)) collected.list[[i]] <- rowSums(president.matrix.list[[i]])
+#collected.list <- list()
+#for(i in 1:10) collected.list[[i]] <- rowSums(president.matrix.list[[i]])
+#collected.list[[11]] <- president.matrix.list[[11]]
+#for (i in 12:length(indices.president)) collected.list[[i]] <- rowSums(president.matrix.list[[i]])
 
-presidentWordMat <- do.call(cbind, collected.list)  
+#presidentWordMat <- do.call(cbind, collected.list)  
  
   
 # At the beginning of this file we sourced in a file "computeSJDistance.R"
@@ -251,26 +251,26 @@ presidentWordMat <- do.call(cbind, collected.list)
 # [docFreq]: vector of the same length as [uniqueWords], 
 # count the number of presidents that used the word
 
-p = vector()
-for (i in 1:nrow(presidentWordMat)){
-  p[[i]] = sum(presidentWordMat[i,] != 0)
-}
-  docFreq <- as.vector(p)
+#p = vector()
+#for (i in 1:nrow(presidentWordMat)){
+#  p[[i]] = sum(presidentWordMat[i,] != 0)
+#}
+#  docFreq <- as.vector(p)
     
 # Call the function computeSJDistance() with the arguments
 # presidentWordMat, docFreq and uniqueWords
 # and save the return value in the matrix [presDist]
 
-presDist <- computeSJDistance(presidentWordMat, docFreq, uniqueWords)
+#presDist <- computeSJDistance(presidentWordMat, docFreq, uniqueWords)
 
 ## Visuzlise the distance matrix using multidimensional scaling.
 # Call the function cmdscale() with presDist as input.
 # Store the result in the variable [mds] by 
 
-mds <- cmdscale(presDist)
+#mds <- cmdscale(presDist)
 
 # First do a simple plot the results:
-plot(mds)
+#plot(mds)
 
 # Customize this plot by:
 # -- remove x and y labels and put the title "Presidents" on the plot
@@ -293,13 +293,13 @@ cols <- rainbow(6)
 # col = cols[presParty[rownames(presDist)]]
   
 plot(mds, type = 'n', main = "Presidents", xlab = "", ylab = "")
-text(mds[,1],mds[,2],labels = unique(speechesDF$Pres), cex = 0.6,
+text(mds[,1],mds[,2],labels = unique(speechesDF$initial), cex = 0.6,
 col = cols[presParty])
 legend(legend = levels(presParty), fill = cols,cex = 0.6, "topright")
 ### Use hierarchical clustering to produce a visualization of  the results.
 # Compare the two plots.
-hc = hclust(as.dist(presDist))
-plot(hc)
+#hc = hclust(as.dist(presDist))
+#plot(hc)
 
 # Both plots look similar in terms of the shape of the plot, but not in 
 # representation
