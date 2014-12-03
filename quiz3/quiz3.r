@@ -12,10 +12,9 @@
 #   <num.at>: an integer indicating how many elements of <chvec> contain the "@"
 #     symbol. For example: numAtElements(c('karl', 'k@rl', '@@@')) should return 2
 numAtElements <- function(chvec){
-  
-  # your code here
+  num.at = length(grep('\\@', chvec))
+  return(num.at)
 }
-
 # Function 2 (3 points)
 # Write a function called unexclaim. Your function should take the following
 # arguments
@@ -25,8 +24,9 @@ numAtElements <- function(chvec){
 #   <newstring>: a character vector of length 1 where all ! symbols have been
 #     replaced by . symbols
 unexclaim <- function(chstring) {
-  
-  # your code here
+  chstring = paste(chstring)
+  newstring = gsub('\\!', '\\.',chstring)
+  return(newstring)
 }
 
 # Function 3 (3 points)
@@ -42,8 +42,9 @@ unexclaim <- function(chstring) {
 #     updated. For example updateDate(c('May, 2010', 'June, 2011'), '2010') should
 #     return 'May, 2015'.
 updateDate <- function(dates, old.yr) {
+  match <- grep('old.yr',dates)
+  old.yr <- gsub('[[:digit:]]{4}', '2015',old.yr)
   
-  # your code here
 }
 
 # Function 4 (4 points)
@@ -59,8 +60,12 @@ updateDate <- function(dates, old.yr) {
 #                    cat dog
 #                     3   1
 countcatdog<- function(chvec){
-  
-  # your code here
+  chvec = paste(chvec)
+  cats <- length(grep('([Cc][Aa][Tt])+', chvec))
+  dogs <- length(grep('([Dd][Oo][Gg])+', chvec))
+  counts = table(cats, dogs)
+  return(counts)
+
 }
 
 # Function 5 (3 points)
@@ -73,7 +78,13 @@ countcatdog<- function(chvec){
 #   <total>: A single number (the sum of all the digits in chvec)
 sumDigits <- function(chvec){
 
-  # your code here
+gsub('[[:alpha:]]', '\\0', chvec)
+gsub('[[:punct:]]', '\\0', chvec)
+if (length(grep('[[:digit:]]', chvec)) == 0){
+chvec = 0
+}
+total = sum(chvec)
+return(total)
 }
 
 # Some test cases:
