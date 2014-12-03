@@ -42,9 +42,20 @@ unexclaim <- function(chstring) {
 #     updated. For example updateDate(c('May, 2010', 'June, 2011'), '2010') should
 #     return 'May, 2015'.
 updateDate <- function(dates, old.yr) {
-  match <- grep('old.yr',dates)
-  old.yr <- gsub('[[:digit:]]{4}', '2015',old.yr)
-  
+ years = substr(dates, sapply(1:length(dates), 
+                      function(x)gregexpr('[[:digit:]]{4}', dates)[[x]][1]), 
+        sapply(1:length(dates), 
+               function(x)gregexpr('[[:digit:]]{4}', dates)[[x]][1])+4)
+if(years = old.yr){
+  dates = gsub(years, '\\2015', dates)
+} 
+
+month <- substr(dates,sapply(1:length(dates), 
+                                 function(x)gregexpr('[[:alpha:]]', dates)[[x]][1]), 
+                sapply(1:length(dates), 
+                       function(x)length(gregexpr('[[:alpha:]]',dates)[[x]])))
+updated.dates = c(month, 2015) 
+ return(updated.dates) 
 }
 
 # Function 4 (4 points)
